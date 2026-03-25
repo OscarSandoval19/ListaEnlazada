@@ -137,5 +137,67 @@ public class SinglyLinkedList<T> {
 
         head = previous; 
     }
+    /**
+     * RETO 4
+     */
+    public int removeDuplicates() {
+        if (head == null) return 0;
+
+        int removedCount = 0;
+        SimpleNode<T> current = head;
+
+        while (current != null) {
+            SimpleNode<T> runner = current;
+            
+            while (runner.getNext() != null) {
+                if (isSameValue(current.getValue(), runner.getNext().getValue())) {
+                    
+                    SimpleNode<T> duplicate = runner.getNext();
+                    runner.setNext(duplicate.getNext());
+                    
+                  
+                    if (duplicate == tail) {
+                        tail = runner;
+                    }
+                    size--;
+                    removedCount++;
+                } else {
+                    runner = runner.getNext();
+                }
+            }
+            current = current.getNext();
+        }
+        return removedCount;
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("[");
+        SimpleNode<T> current = head;
+        while (current != null) {
+            builder.append(current.getValue());
+            if (current.getNext() != null) {
+                builder.append(", ");
+            }
+            current = current.getNext();
+        }
+        builder.append("]");
+        return builder.toString();
+    }
+
+    private boolean isSameValue(T left, T right) {
+        return left == right || (left != null && left.equals(right));
+    }
+
+	public String contains(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String size() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
