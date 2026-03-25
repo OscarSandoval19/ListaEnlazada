@@ -112,5 +112,30 @@ public class SinglyLinkedList<T> {
         return removedCount;
     }
 
+    /**
+     * RETO 3
+     */
+    
+    public void reverseInPlace() {
+        if (head == null || head.getNext() == null) {
+            return; 
+        }
+
+        SimpleNode<T> previous = null;
+        SimpleNode<T> current = head;
+        SimpleNode<T> next = null;
+
+       
+        tail = head;
+
+        while (current != null) {
+            next = current.getNext(); 
+            current.setNext(previous); 
+            previous = current;        
+            current = next;            
+        }
+
+        head = previous; 
+    }
 
 }
